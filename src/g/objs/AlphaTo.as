@@ -6,11 +6,11 @@ package g.objs{
 	
 	public class AlphaTo extends GameObject{
 		
-		public static function create(disObj:DisplayObject,alphaInit:Number=1,alphaTarget:Number=0,duration:Number=1,
+		public static function create(target:*,alphaInit:Number=1,alphaTarget:Number=0,duration:Number=1,
 		updateFunc:Function=null,updateParams:Array=null,completeFunc:Function=null,completeParams:Array=null):AlphaTo{
 			var game:Game=Game.getInstance();
 			var info:*={};
-			info.disObj=disObj;
+			info.target=target;
 			info.alphaInit=alphaInit;
 			info.alphaTarget=alphaTarget;
 			info.duration=duration;
@@ -27,7 +27,7 @@ package g.objs{
 		
 		override protected function init(info:* = null):void{
 			super.init(info);
-			_disObj=info.disObj;
+			_target=info.target;
 			_alphaInit=info.alphaInit;
 			_alphaTarget=info.alphaTarget;
 			_duration=info.duration;
@@ -37,23 +37,23 @@ package g.objs{
 			_completeParams=info.completeParams;
 			
 			_v=(_alphaTarget-_alphaInit)/(_duration*MyData.frameRate);
-			_disObj.alpha=_alphaInit;
+			_target.alpha=_alphaInit;
 			
 		}
 		
 		override protected function update():void{
-			_disObj.alpha+=_v;
+			_target.alpha+=_v;
 			if(_v>0){
-				if(_disObj.alpha>=_alphaTarget){
-					_disObj.alpha=_alphaTarget;
+				if(_target.alpha>=_alphaTarget){
+					_target.alpha=_alphaTarget;
 					if(_completeFunc!=null) _completeFunc.apply(null,_completeParams);
 					destroy(this);
 				}else{
 					if(_updateFunc!=null) _updateFunc.apply(null,_updateParams);
 				}
 			}else if(_v<0){
-				if(_disObj.alpha<=_alphaTarget){
-					_disObj.alpha=_alphaTarget;
+				if(_target.alpha<=_alphaTarget){
+					_target.alpha=_alphaTarget;
 					if(_completeFunc!=null) _completeFunc.apply(null,_completeParams);
 					destroy(this);
 				}else{
@@ -64,7 +64,7 @@ package g.objs{
 		
 		private var _v:Number;
 		
-		private var _disObj:DisplayObject;
+		private var _target:*;
 		private var _alphaInit:Number;
 		private var _alphaTarget:Number;
 		private var _duration:Number;
