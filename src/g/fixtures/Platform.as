@@ -115,7 +115,7 @@
 		protected function isKinematic():Boolean{ return _type==CONTROLLED||_type==AUTO; }
 		
 		protected var _worldManifold:b2WorldManifold;
-		protected function preSolve(contact:b2Contact,oldManifold:b2Manifold):void{
+		protected function preSolve(contact:b2Contact,oldManifold:b2Manifold,other:b2Body):void{
 			if(!_isOneWay)return;
 			if(!contact.IsTouching())return;
 			var b1:b2Body=contact.GetFixtureA().GetBody();

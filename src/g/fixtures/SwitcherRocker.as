@@ -64,7 +64,7 @@ package g.fixtures{
 			}
 		}
 		
-		private function contactBegin(contact:b2Contact):void{
+		private function contactBegin(contact:b2Contact,other:b2Body):void{
 			var b1:b2Body=contact.GetFixtureA().GetBody();
 			var b2:b2Body=contact.GetFixtureB().GetBody();
 			var ob:b2Body=b1==_body?b2:b1;
@@ -86,7 +86,7 @@ package g.fixtures{
 			}
 		}
 		
-		private function contactEnd(contact:b2Contact):void{
+		private function contactEnd(contact:b2Contact,other:b2Body):void{
 			var b1:b2Body=contact.GetFixtureA().GetBody();
 			var b2:b2Body=contact.GetFixtureB().GetBody(); 
 			var ob:b2Body=b1==_body?b2:b1;
