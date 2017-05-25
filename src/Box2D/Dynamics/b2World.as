@@ -196,6 +196,11 @@ public class b2World
 	public function DestroyBody(b:b2Body) : void{
 		if(b==null)return;//kingBook 2015/10/13 10:36
 		b.SetUserData({isDestroy:true});//kingBook 2017/2/17 16:08
+		b.SetContactBeginCallback(null);//kingBook 2017/5/24 10:46
+		b.SetPreSolveCallback(null);//kingBook 2017/5/24 10:46
+		b.SetPostSolveCallback(null);//kingBook 2017/5/24 10:46
+		b.SetContactEndCallback(null);//kingBook 2017/5/24 10:46
+		
 		//b2Settings.b2Assert(m_bodyCount > 0);
 		//b2Settings.b2Assert(m_lock == false);
 		if (IsLocked() == true)
